@@ -114,16 +114,16 @@ export default function UseTags() {
         </div>
         <div className="flex justify-center mt-6">
             <button
-              className="px-6 py-2 bg-blue-600 rounded hover:bg-blue-500"
-              onClick={handleFinish}
-            >
-              Finish
-            </button>
-            <button
               className="ml-4 px-6 py-2 bg-red-600 rounded hover:bg-red-500"
               onClick={handleStartOver}
             >
               Start Over
+            </button>
+            <button
+              className="px-6 py-2 bg-blue-600 rounded hover:bg-blue-500"
+              onClick={handleFinish}
+            >
+              Finish
             </button>
           </div>
       </div>
