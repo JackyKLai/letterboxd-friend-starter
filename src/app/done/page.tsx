@@ -7,9 +7,9 @@ export default function Done() {
   const router = useRouter();
 
   useEffect(() => {
-    const storedData = localStorage.getItem('fileData');
+    const storedData = localStorage.getItem('lttrbxdFrdFileData');
     if (storedData) {
-      localStorage.removeItem('fileData');
+      localStorage.removeItem('lttrbxdFrdFileData');
     }
   }, []);
 

@@ -13,7 +13,7 @@ export default function SelectMovies() {
   const itemsPerPage = 10;
 
   useEffect(() => {
-    const storedData = localStorage.getItem('fileData');
+    const storedData = localStorage.getItem('lttrbxdFrdFileData');
     if (storedData) {
       setFileData(JSON.parse(storedData));
     } else {
@@ -39,6 +39,11 @@ export default function SelectMovies() {
     setFileData([]);
     setSelectedMovies(new Set());
     router.push('/done');
+  };
+
+  const handleStartOver = () => {
+    localStorage.removeItem('lttrbxdFrdFileData');
+    router.push('/');
   };
 
   const paginatedData = fileData.slice(
@@ -110,6 +115,12 @@ export default function SelectMovies() {
               onClick={handleFinish}
             >
               Finish
+            </button>
+            <button
+              className="ml-4 px-6 py-2 bg-red-600 rounded hover:bg-red-500"
+              onClick={handleStartOver}
+            >
+              Start Over
             </button>
           </div>
         </>

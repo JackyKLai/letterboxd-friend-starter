@@ -49,7 +49,7 @@ export default function Home() {
               e.target.value = '' // Reset the input
               return
             }
-            localStorage.setItem('fileData', JSON.stringify(results.data));
+            localStorage.setItem('lttrbxdFrdFileData', JSON.stringify(results.data));
             setFileData(results.data);
             console.log('Parsed Data:', results.data);
           }
@@ -60,7 +60,7 @@ export default function Home() {
   }
 
   useEffect(() => {
-    const storedData = localStorage.getItem('fileData');
+    const storedData = localStorage.getItem('lttrbxdFrdFileData');
     if (storedData) {
       const parsedData = JSON.parse(storedData);
       const tags = collectTags(parsedData);

@@ -13,7 +13,7 @@ export default function UseTags() {
   const [searchTerm, setSearchTerm] = useState<string>(''); // New state for search term
 
   useEffect(() => {
-    const storedData = localStorage.getItem('fileData');
+    const storedData = localStorage.getItem('lttrbxdFrdFileData'); // Renamed here
     if (storedData) {
       const parsedData = JSON.parse(storedData);
       setFileData(parsedData);
@@ -49,6 +49,11 @@ export default function UseTags() {
     setFileData([]);
     setTags([]);
     setSelectedTags([]);
+  };
+
+  const handleStartOver = () => {
+    localStorage.removeItem('lttrbxdFrdFileData'); // Renamed here
+    router.push('/');
   };
 
   const filteredTags = tags.filter((tag) =>
@@ -107,12 +112,20 @@ export default function UseTags() {
             ))}
           </div>
         </div>
-        <button
-          className="mt-6 px-6 py-2 bg-blue-600 rounded hover:bg-blue-500"
-          onClick={handleFinish}
-        >
-          Finish
-        </button>
+        <div className="flex justify-center mt-6">
+            <button
+              className="px-6 py-2 bg-blue-600 rounded hover:bg-blue-500"
+              onClick={handleFinish}
+            >
+              Finish
+            </button>
+            <button
+              className="ml-4 px-6 py-2 bg-red-600 rounded hover:bg-red-500"
+              onClick={handleStartOver}
+            >
+              Start Over
+            </button>
+          </div>
       </div>
     </div>
   );

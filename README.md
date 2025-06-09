@@ -23,5 +23,5 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 
-## So this is just pandas but only does one very specific thing?
+## So basically it just reads a CSV file and filters it?
 Yep.
