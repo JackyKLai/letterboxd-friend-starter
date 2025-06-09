@@ -8,11 +8,10 @@ export default function Done() {
 
   useEffect(() => {
     const storedData = localStorage.getItem('fileData');
-    if (!storedData) {
-      router.push('/');
+    if (storedData) {
+      localStorage.removeItem('fileData');
     }
-    localStorage.removeItem('fileData'); // Clear the file data after redirecting
-  }, [router]);
+  }, []);
 
   return (
     <div className="bg-gray-800 min-h-screen">
@@ -31,6 +30,12 @@ export default function Done() {
                   https://letterboxd.com/import
                 </a>.
               </p>
+              <button 
+                onClick={() => router.push('/')} 
+                className="mt-8 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-400"
+              >
+                Start Over
+              </button>
             </div>
           </div>
         </div>

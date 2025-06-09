@@ -3,8 +3,10 @@
 import { useEffect, useState } from 'react';
 import { createCSV } from '@/utils/helpers';
 import type { DiaryEntry } from '@/utils/types'
+import { useRouter } from 'next/navigation'
 
 export default function SelectMovies() {
+  const router = useRouter();
   const [fileData, setFileData] = useState<DiaryEntry[]>([]);
   const [selectedMovies, setSelectedMovies] = useState<Set<number>>(new Set());
   const [currentPage, setCurrentPage] = useState(1);
@@ -15,7 +17,7 @@ export default function SelectMovies() {
     if (storedData) {
       setFileData(JSON.parse(storedData));
     } else {
-      window.location.href = '/';
+      router.push('/');
     }
   }, []);
 
@@ -36,7 +38,7 @@ export default function SelectMovies() {
     createCSV(selected); // Download the selected movies as CSV
     setFileData([]);
     setSelectedMovies(new Set());
-    window.location.href = '/done';
+    router.push('/done');
   };
 
   const paginatedData = fileData.slice(
@@ -102,12 +104,14 @@ export default function SelectMovies() {
               Next
             </button>
           </div>
-          <button
-            className="mt-6 px-6 py-2 bg-blue-600 rounded hover:bg-blue-500"
-            onClick={handleFinish}
-          >
-            Finish
-          </button>
+          <div className="flex justify-center mt-6">
+            <button
+              className="px-6 py-2 bg-blue-600 rounded hover:bg-blue-500"
+              onClick={handleFinish}
+            >
+              Finish
+            </button>
+          </div>
         </>
       ) : (
         <p>No data available. Please upload a file first.</p>

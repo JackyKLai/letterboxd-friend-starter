@@ -3,8 +3,10 @@
 import { useEffect, useState } from 'react';
 import { collectTags, createCSV } from '@/utils/helpers'; // Import createCSV
 import { DiaryEntry } from '@/utils/types';
+import { useRouter } from 'next/navigation'
 
 export default function UseTags() {
+  const router = useRouter();
   const [fileData, setFileData] = useState<DiaryEntry[]>([]);
   const [tags, setTags] = useState<string[]>([]);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -17,7 +19,7 @@ export default function UseTags() {
       setFileData(parsedData);
       setTags(collectTags(parsedData));
     } else {
-        window.location.href = '/';
+        router.push('/');
     }
   }, []);
 
@@ -43,7 +45,7 @@ export default function UseTags() {
       selectedTags.some((tag) => entry.Tags?.split(', ').includes(tag))
     );
     createCSV(filteredData); // Download the filtered data as CSV
-    window.location.href = '/done';
+    router.push('/done');
     setFileData([]);
     setTags([]);
     setSelectedTags([]);
