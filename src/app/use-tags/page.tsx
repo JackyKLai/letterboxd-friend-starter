@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import { collectTags, createCSV } from '@/utils/helpers'; // Import createCSV
+import { DiaryEntry } from '@/utils/types';
 
 export default function UseTags() {
-  const [fileData, setFileData] = useState<any[]>([]);
+  const [fileData, setFileData] = useState<DiaryEntry[]>([]);
   const [tags, setTags] = useState<string[]>([]);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>(''); // New state for search term

@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import { createCSV } from '@/utils/helpers';
+import type { DiaryEntry } from '@/utils/types'
 
 export default function SelectMovies() {
-  const [fileData, setFileData] = useState<any[]>([]);
+  const [fileData, setFileData] = useState<DiaryEntry[]>([]);
   const [selectedMovies, setSelectedMovies] = useState<Set<number>>(new Set());
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;

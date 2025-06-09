@@ -4,10 +4,11 @@ import { useEffect, useState } from 'react'
 import Papa from 'papaparse'
 import { useRouter } from 'next/navigation'
 import { collectTags } from '@/utils/helpers'
+import type { DiaryEntry } from '@/utils/types'
 
 export default function Home() {
   const router = useRouter();
-  const [fileData, setFileData] = useState<any[]>([]);
+  const [fileData, setFileData] = useState<DiaryEntry[]>([]);
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
 
@@ -19,14 +20,6 @@ export default function Home() {
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
-    type DiaryEntry = {
-      'Watched Date': string;
-      'Tags': string;
-      'Letterboxd URI': string;
-      'Year': string;
-      'Name': string;
-    }
-
     const expectedHeaders = [
         "Date",
         "Name",
@@ -47,7 +40,7 @@ export default function Home() {
       const reader = new FileReader()
       reader.onload = (event) => {
         const text = event.target?.result as string
-        const parsedData = Papa.parse<DiaryEntry>(text, {
+        Papa.parse<DiaryEntry>(text, {
           header: true,
           skipEmptyLines: true,
           complete: (results) => {
